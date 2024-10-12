@@ -21,6 +21,7 @@ dependencies {
 
     // This dependency is used by the application.
     implementation(libs.guava)
+    implementation("org.codehaus.jackson:jackson-core-asl:1.9.13")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
