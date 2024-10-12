@@ -4,7 +4,6 @@ plugins {
 }
 
 repositories {
-    // Use Maven Central for resolving dependencies.
     mavenCentral()
 }
 
@@ -14,7 +13,7 @@ dependencies {
 
     // This dependency is used by the application.
     implementation(libs.guava)
-    implementation("org.codehaus.jackson:jackson-core-asl:1.9.13")
+    implementation("org.codehaus.jackson:jackson-core-asl:1.9.13") //Jackson dependency.
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
