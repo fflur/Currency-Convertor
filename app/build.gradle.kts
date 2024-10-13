@@ -9,7 +9,6 @@ repositories {
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.2")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.11.2")
     testImplementation("org.mockito:mockito-core:5.14.1") //Mockito dependency.
     implementation("org.codehaus.jackson:jackson-core-asl:1.9.13") //Jackson dependency.
 }

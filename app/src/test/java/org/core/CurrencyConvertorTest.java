@@ -9,7 +9,7 @@ public class CurrencyConvertorTest {
     @Test
     void convertTest() {
         Assertions.assertEquals(
-            100D,
+            200D,
             cc.convert("USD", "INR", 100D),
             "result should always be 200"
         );
