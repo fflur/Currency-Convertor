@@ -8,9 +8,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.2")
-    // This dependency is used by the application.
-    implementation(libs.guava)
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.2") //JUnit 5 dependency.
+    testImplementation("org.mockito:mockito-core:5.14.1") //Mockito dependency.
     implementation("org.codehaus.jackson:jackson-core-asl:1.9.13") //Jackson dependency.
 }
 
