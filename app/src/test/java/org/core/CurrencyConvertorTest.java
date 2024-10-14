@@ -25,5 +25,6 @@ public class CurrencyConvertorTest {
     void searchTest() throws Exception {
         Assertions.assertDoesNotThrow(() -> cc.search("america"));
         Assertions.assertEquals(null, cc.search("america"));
+        Assertions.assertEquals("INR", cc.search("india"));
     }
 }
