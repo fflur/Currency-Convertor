@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<Currencies>
+  <Currency>
+    <Code>USD</Code>
+    <Name>American Dollar</Name>
+    <Country>United States</Country>
+  </Currency>
+
+  <Currency>
+    <Code>INR</Code>
+    <Name>Indian Rupee</Name>
+    <Country>India</Country>
+  </Currency>
+</Currencies>
