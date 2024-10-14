@@ -38,7 +38,7 @@ public class CurrencyConvertor {
         return false;
     }
 
-    public String search(String target_country)
+    public String getCountryCode(String target_country)
     throws XMLException, ParsingException, ValidityException, IOException {
         Elements elements;
         Element element;

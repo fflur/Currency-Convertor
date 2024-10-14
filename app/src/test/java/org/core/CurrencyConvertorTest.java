@@ -23,8 +23,8 @@ public class CurrencyConvertorTest {
 
     @Test
     void searchTest() throws Exception {
-        Assertions.assertDoesNotThrow(() -> cc.search("america"));
-        Assertions.assertEquals(null, cc.search("america"));
-        Assertions.assertEquals("INR", cc.search("india"));
+        Assertions.assertDoesNotThrow(() -> cc.getCountryCode("america"));
+        Assertions.assertEquals(null, cc.getCountryCode("america"));
+        Assertions.assertEquals("INR", cc.getCountryCode("india"));
     }
 }
