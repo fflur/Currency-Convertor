@@ -11,9 +11,11 @@ import java.util.Map;
 import java.util.List;
 import java.io.IOException;
 import java.io.File;
+import java.io.BufferedReader;
 import java.nio.file.Path;
 import java.nio.file.Files;
 import java.nio.file.FileSystems;
+import java.nio.file.InvalidPathException;
 import java.nio.charset.StandardCharsets;
 import org.scrapers.Currency;
 import org.scrapers.IScraper;
@@ -21,10 +23,22 @@ import org.scrapers.IScraper;
 public class CurrencyConvertor {
     private Map currencies;
     private IScraper scraper;
+    private Document doc;
 
-    public CurrencyConvertor(Map currencies, IScraper scraper){
+    public CurrencyConvertor(Map currencies, IScraper scraper) throws
+    ParsingException,
+    InvalidPathException,
+    SecurityException,
+    IOException {
         this.currencies = currencies;
         this.scraper = scraper;
+
+        Path path = FileSystems
+            .getDefault()
+            .getPath("Currencies.xml");
+
+        Builder builder = new Builder();
+        this.doc = builder.build(Files.newBufferedReader(path));
     }
 
     public double convert(String src, String dest, double mnt_to_cnvrt) {
@@ -38,20 +52,12 @@ public class CurrencyConvertor {
         return false;
     }
 
-    public String getCountryCode(String target_country)
-    throws XMLException, ParsingException, ValidityException, IOException {
+    public String getCurrCodeByCountry(String target_country) {
         Elements elements;
         Element element;
         String current_country;
         String target_country_code = null;
-
-        Path path = FileSystems
-            .getDefault()
-            .getPath("Currencies.xml");
-
-        Builder builder = new Builder();
-        Document doc = builder.build(Files.newBufferedReader(path));
-        element = doc.getRootElement();
+        element = this.doc.getRootElement();
         elements = element.getChildElements("Currency");
 
         for (int i = 0; i < elements.size(); i++) {
@@ -70,6 +76,32 @@ public class CurrencyConvertor {
         }
 
         return target_country_code;
+    }
+
+    public String getCurrCodeByName(String target_curr) {
+        Elements elements;
+        Element element;
+        String current_curr;
+        String target_curr_code = null;
+        element = this.doc.getRootElement();
+        elements = element.getChildElements("Currency");
+
+        for (int i = 0; i < elements.size(); i++) {
+            current_curr = elements
+                .get(i)
+                .getFirstChildElement("Name")
+                .getValue();
+
+            if (target_curr.equalsIgnoreCase(current_curr)) {
+                target_curr_code = elements
+                    .get(i)
+                    .getFirstChildElement("Code")
+                    .getValue();
+                break;
+            }
+        }
+
+        return target_curr_code;
     }
 
     public void getInfo() {}
