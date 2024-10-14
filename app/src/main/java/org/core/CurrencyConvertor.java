@@ -12,4 +12,5 @@ public class CurrencyConvertor {
     public void search() {}
     public void info() {}
     public void listCurrencies() {}
+    public void isBaseCurrencySet() {}
 }
