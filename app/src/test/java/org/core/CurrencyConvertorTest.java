@@ -22,7 +22,7 @@ public class CurrencyConvertorTest {
     }
 
     @Test
-    void searchTest() throws Exception {
+    void getCountryCodeTest() throws Exception {
         Assertions.assertDoesNotThrow(() -> cc.getCountryCode("america"));
         Assertions.assertEquals(null, cc.getCountryCode("america"));
         Assertions.assertEquals("INR", cc.getCountryCode("india"));
