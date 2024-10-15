@@ -154,5 +154,8 @@ public class CurrencyConvertor {
 
         return element.getValue();
     }
-    public void isBaseCurrencySet() {}
+
+    public boolean isBaseCurrencySet() throws ParsingException, IOException {
+        return !this.getBaseCurrency().isEmpty();
+    }
 }

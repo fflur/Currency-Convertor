@@ -48,5 +48,10 @@ public class CurrencyConvertorTest {
     void getBaseCurrencyTest() throws Exception {
         Assertions.assertDoesNotThrow(() -> cc.getBaseCurrency());
         Assertions.assertEquals("KWD", cc.getBaseCurrency());
-  }
+    }
+
+    @Test
+    void isBaseCurrencySetTest() throws Exception {
+        Assertions.assertTrue(cc.isBaseCurrencySet());
+    }
 }
