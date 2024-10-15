@@ -4,13 +4,13 @@ public class Currency {
     private String code;
     private String name;
     private String country;
-    private int exchange_rate;
+    private double exchange_rate;
 
     public Currency(
         String code,
         String name,
         String country,
-        int exchange_rate
+        double exchange_rate
     ) {
         this.code = code;
         this.name = name;
@@ -40,5 +40,9 @@ public class Currency {
 
     public String getCountry() {
         return this.country;
+    }
+
+    public double getExchangeRate() {
+        return this.exchange_rate;
     }
 }

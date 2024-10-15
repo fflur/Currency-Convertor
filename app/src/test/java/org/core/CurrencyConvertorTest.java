@@ -16,18 +16,27 @@ public class CurrencyConvertorTest {
 
     public CurrencyConvertorTest() throws Exception {
         IScraper scraper = Mockito.mock(IScraper.class);
-        Currency curren = Mockito.mock(Currency.class);
+        Currency curren1 = new Currency(
+            "USD",
+            "US Dollar",
+            "United States",
+            10D
+        );
+        Currency curren2 = new Currency(
+            "INR",
+            "Indian Rupee",
+            "India",
+            1000D
+        );
         this.currencies = new HashMap<String, Currency>();
-        this.currencies.put("KWD", curren);
+        this.currencies.put("USD", curren1);
+        this.currencies.put("INR", curren2);
         this.cc = new CurrencyConvertor(this.currencies, scraper);
     }
 
     @Test
-    void convertTest() {
-        Assertions.assertEquals(
-            200D,
-            cc.convert("USD", "INR", 100D)
-        );
+    void convertTest() throws Exception {
+        Assertions.assertEquals(100000D, cc.convert("USD", "INR", 1000D));
     }
 
     @Test
@@ -46,13 +55,13 @@ public class CurrencyConvertorTest {
 
     @Test
     void setBaseCurrencyTest() throws Exception {
-        Assertions.assertDoesNotThrow(() -> cc.setBaseCurrency("KWD"));
+        Assertions.assertDoesNotThrow(() -> cc.setBaseCurrency("INR"));
     }
 
     @Test
     void getBaseCurrencyTest() throws Exception {
         Assertions.assertDoesNotThrow(() -> cc.getBaseCurrency());
-        Assertions.assertEquals("KWD", cc.getBaseCurrency());
+        Assertions.assertEquals("INR", cc.getBaseCurrency());
     }
 
     @Test

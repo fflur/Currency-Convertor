@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.List;
 import java.io.IOException;
 import java.io.File;
-import java.io.BufferedReader;
 import java.nio.file.Path;
 import java.nio.file.Files;
 import java.nio.file.FileSystems;
@@ -45,15 +44,22 @@ public class CurrencyConvertor {
         this.doc = builder.build(Files.newBufferedReader(path));
     }
 
-    public double convert(String src, String dest, double mnt_to_cnvrt) {
-        return 2 * mnt_to_cnvrt;
+    public double convert(String src, String dst, double mnt_to_cnvrt) throws
+        InvalidCurrencyCode
+    {
+        if (!this.currencies.containsKey(src)) throw new InvalidCurrencyCode();
+        if (!this.currencies.containsKey(dst)) throw new InvalidCurrencyCode();
+        Currency curr_src = (Currency) this.currencies.get(src);
+        Currency curr_dst = (Currency) this.currencies.get(dst);
+
+        return (mnt_to_cnvrt / curr_src.getExchangeRate())
+            * curr_dst.getExchangeRate();
     }
 
     public void convertAll() {}
 
     public boolean isValidCurrency(String code) {
-        if (this.currencies.containsKey(code)) return true;
-        return false;
+        return this.currencies.containsKey(code);
     }
 
     public String getCurrCodeByCountry(String target_country) {
@@ -116,7 +122,7 @@ public class CurrencyConvertor {
         IOException,
         InvalidCurrencyCode
     {
-        if (!this.isValidCurrency(code)) throw new InvalidCurrencyCode();
+        if (!this.currencies.containsKey(code)) throw new InvalidCurrencyCode();
         Element element, root_element;
         Elements elements;
         String val;
