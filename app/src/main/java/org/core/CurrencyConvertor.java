@@ -56,8 +56,6 @@ public class CurrencyConvertor {
             * curr_dst.getExchangeRate();
     }
 
-    public void convertAll() {}
-
     public boolean isValidCurrency(String code) {
         return this.currencies.containsKey(code);
     }
