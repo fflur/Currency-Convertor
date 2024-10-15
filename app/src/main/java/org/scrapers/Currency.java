@@ -30,6 +30,10 @@ public class Currency {
         this.country = country;
     }
 
+    void setExchangeRate(double exchange_rate) {
+        this.exchange_rate = exchange_rate;
+  }
+
     public String getCode() {
         return this.code;
     }
