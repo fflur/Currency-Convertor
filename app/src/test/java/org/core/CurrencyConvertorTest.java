@@ -12,7 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 
 public class CurrencyConvertorTest {
     private CurrencyConvertor cc;
-    private Map currencies;
+    private Map<String, Currency> currencies;
 
     public CurrencyConvertorTest() throws Exception {
         IScraper scraper = Mockito.mock(IScraper.class);
@@ -52,6 +52,16 @@ public class CurrencyConvertorTest {
         Assertions.assertEquals(null, cc.getCurrCodeByName("dinaar"));
         Assertions.assertEquals("INR", cc.getCurrCodeByName("indian rupee"));
     }
+
+    @Test
+    void listCurrenciesTest() {
+        String tst[] = new String[] {
+            "USD - American Dollar",
+            "INR - Indian Rupee"
+        };
+
+        Assertions.assertArrayEquals(tst, cc.listCurrencies());
+  }
 
     @Test
     void setBaseCurrencyTest() throws Exception {

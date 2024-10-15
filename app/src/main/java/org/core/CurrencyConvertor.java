@@ -23,7 +23,7 @@ import org.scrapers.IScraper;
 import org.core.InvalidCurrencyCode;
 
 public class CurrencyConvertor {
-    private Map currencies;
+    private Map<String, Currency> currencies;
     private IScraper scraper;
     private Document doc;
 
@@ -113,7 +113,22 @@ public class CurrencyConvertor {
     }
 
     public void getInfo() {}
-    public void listCurrencies() {}
+
+    public String[] listCurrencies() {
+        String fmt_crrncs[] = new String[this.currencies.size()];
+        Elements elements = this.doc.getRootElement().getChildElements();
+        Element element;
+        String code, name;
+
+        for (int i = 0; i < elements.size(); i++) {
+            element = elements.get(i);
+            code = element.getFirstChildElement("Code").getValue();
+            name = element.getFirstChildElement("Name").getValue();
+            fmt_crrncs[i] = code + " - " + name;
+        }
+
+        return fmt_crrncs;
+    }
 
     public void setBaseCurrency(String code) throws
         ParsingException,
