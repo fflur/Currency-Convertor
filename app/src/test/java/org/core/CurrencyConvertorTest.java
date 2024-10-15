@@ -2,7 +2,9 @@ package org.core;
 
 import org.mockito.Mockito;
 import java.util.Map;
+import java.util.HashMap;
 import java.io.File;
+import org.scrapers.Currency;
 import org.scrapers.IScraper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,11 +12,14 @@ import org.junit.jupiter.api.DisplayName;
 
 public class CurrencyConvertorTest {
     private CurrencyConvertor cc;
+    private Map currencies;
 
     public CurrencyConvertorTest() throws Exception {
-        Map map = Mockito.mock(Map.class);
         IScraper scraper = Mockito.mock(IScraper.class);
-        this.cc = new CurrencyConvertor(map, scraper);
+        Currency curren = Mockito.mock(Currency.class);
+        this.currencies = new HashMap<String, Currency>();
+        this.currencies.put("KWD", curren);
+        this.cc = new CurrencyConvertor(this.currencies, scraper);
     }
 
     @Test
@@ -39,7 +44,7 @@ public class CurrencyConvertorTest {
         Assertions.assertEquals("INR", cc.getCurrCodeByName("indian rupee"));
     }
 
-    // @Test
+    @Test
     void setBaseCurrencyTest() throws Exception {
         Assertions.assertDoesNotThrow(() -> cc.setBaseCurrency("KWD"));
     }
