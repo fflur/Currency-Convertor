@@ -27,7 +27,7 @@ public class CurrencyConvertorTest {
 
     @Test
     void getCurrCodeByCountryTest() throws Exception {
-        Assertions.assertDoesNotThrow(() -> cc.getCurrCodeByCountry("america"));
+        Assertions.assertDoesNotThrow(() -> cc.getCurrCodeByCountry("aerica"));
         Assertions.assertEquals(null, cc.getCurrCodeByCountry("america"));
         Assertions.assertEquals("INR", cc.getCurrCodeByCountry("india"));
     }
@@ -37,5 +37,16 @@ public class CurrencyConvertorTest {
         Assertions.assertDoesNotThrow(() -> cc.getCurrCodeByName("asdkf"));
         Assertions.assertEquals(null, cc.getCurrCodeByName("dinaar"));
         Assertions.assertEquals("INR", cc.getCurrCodeByName("indian rupee"));
+    }
+
+    // @Test
+    void setBaseCurrencyTest() throws Exception {
+        Assertions.assertDoesNotThrow(() -> cc.setBaseCurrency("KWD"));
+    }
+
+    @Test
+    void getBaseCurrencyTest() throws Exception {
+        Assertions.assertDoesNotThrow(() -> cc.getBaseCurrency());
+        Assertions.assertEquals("KWD", cc.getBaseCurrency());
   }
 }

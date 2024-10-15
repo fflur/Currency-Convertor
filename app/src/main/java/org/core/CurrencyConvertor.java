@@ -4,9 +4,11 @@ import nu.xom.Builder;
 import nu.xom.Document;
 import nu.xom.Element;
 import nu.xom.Elements;
+import nu.xom.Serializer;
 import nu.xom.XMLException;
 import nu.xom.ParsingException;
 import nu.xom.ValidityException;
+import nu.xom.Node;
 import java.util.Map;
 import java.util.List;
 import java.io.IOException;
@@ -19,6 +21,7 @@ import java.nio.file.InvalidPathException;
 import java.nio.charset.StandardCharsets;
 import org.scrapers.Currency;
 import org.scrapers.IScraper;
+import org.core.InvalidCurrencyCode;
 
 public class CurrencyConvertor {
     private Map currencies;
@@ -26,10 +29,11 @@ public class CurrencyConvertor {
     private Document doc;
 
     public CurrencyConvertor(Map currencies, IScraper scraper) throws
-    ParsingException,
-    InvalidPathException,
-    SecurityException,
-    IOException {
+        ParsingException,
+        InvalidPathException,
+        SecurityException,
+        IOException
+    {
         this.currencies = currencies;
         this.scraper = scraper;
 
@@ -106,7 +110,49 @@ public class CurrencyConvertor {
 
     public void getInfo() {}
     public void listCurrencies() {}
-    public void setBaseCurrency() {}
-    public void getBaseCurrency() {}
+
+    public void setBaseCurrency(String code) throws
+        ParsingException,
+        IOException,
+        InvalidCurrencyCode
+    {
+        if (!this.isValidCurrency(code)) throw new InvalidCurrencyCode();
+        Element element, root_element;
+        Elements elements;
+        String val;
+        Path path = FileSystems
+            .getDefault()
+            .getPath("config.xml");
+        Builder builder = new Builder();
+        Document config_doc = builder.build(Files.newBufferedReader(path));
+        Serializer srlzr = new Serializer(Files.newOutputStream(path));
+        element = config_doc
+            .getRootElement()
+            .getFirstChildElement("BaseCurrency");
+        element.removeChild(0);
+        element.appendChild(code);
+        srlzr.setIndent(2);
+        srlzr.write(config_doc);
+        srlzr.flush();
+    }
+
+    public String getBaseCurrency() throws
+        ParsingException,
+        IOException
+    {
+        Element element, root_element;
+        Elements elements;
+        String val;
+        Path path = FileSystems
+            .getDefault()
+            .getPath("config.xml");
+        Builder builder = new Builder();
+        Document config_doc = builder.build(Files.newBufferedReader(path));
+        element = config_doc
+            .getRootElement()
+            .getFirstChildElement("BaseCurrency");
+
+        return element.getValue();
+    }
     public void isBaseCurrencySet() {}
 }
