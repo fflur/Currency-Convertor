@@ -16,18 +16,21 @@ public class CurrencyConvertorTest {
 
     public CurrencyConvertorTest() throws Exception {
         IScraper scraper = Mockito.mock(IScraper.class);
+
         Currency curren1 = new Currency(
             "USD",
             "US Dollar",
             "United States",
             10D
         );
+
         Currency curren2 = new Currency(
             "INR",
             "Indian Rupee",
             "India",
             1000D
         );
+
         this.currencies = new HashMap<String, Currency>();
         this.currencies.put("USD", curren1);
         this.currencies.put("INR", curren2);
@@ -54,14 +57,20 @@ public class CurrencyConvertorTest {
     }
 
     @Test
+    void getInfoTest() throws Exception {
+        Map<String, Currency> copied_map = this.currencies;
+        Assertions.assertTrue(copied_map.values().equals(cc.getInfo()));
+    }
+
+    @Test
     void listCurrenciesTest() {
-        String tst[] = new String[] {
-            "USD - American Dollar",
-            "INR - Indian Rupee"
+        String tst[][] = {
+            {"USD", "American Dollar"},
+            {"INR", "Indian Rupee"}
         };
 
         Assertions.assertArrayEquals(tst, cc.listCurrencies());
-  }
+    }
 
     @Test
     void setBaseCurrencyTest() throws Exception {

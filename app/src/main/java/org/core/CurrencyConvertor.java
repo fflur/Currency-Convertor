@@ -11,6 +11,7 @@ import nu.xom.ValidityException;
 import nu.xom.Node;
 import java.util.Map;
 import java.util.List;
+import java.util.Collection;
 import java.io.IOException;
 import java.io.File;
 import java.nio.file.Path;
@@ -22,7 +23,7 @@ import org.scrapers.Currency;
 import org.scrapers.IScraper;
 import org.core.InvalidCurrencyCode;
 
-public class CurrencyConvertor {
+public final class CurrencyConvertor {
     private Map<String, Currency> currencies;
     private IScraper scraper;
     private Document doc;
@@ -112,19 +113,19 @@ public class CurrencyConvertor {
         return target_curr_code;
     }
 
-    public void getInfo() {}
+    public Collection<Currency> getInfo() {
+        return this.currencies.values();
+    }
 
-    public String[] listCurrencies() {
-        String fmt_crrncs[] = new String[this.currencies.size()];
+    public String[][] listCurrencies() {
+        String fmt_crrncs[][] = new String[this.currencies.size()][2];
         Elements elements = this.doc.getRootElement().getChildElements();
-        Element element;
-        String code, name;
+        Element element; String code, name;
 
         for (int i = 0; i < elements.size(); i++) {
             element = elements.get(i);
-            code = element.getFirstChildElement("Code").getValue();
-            name = element.getFirstChildElement("Name").getValue();
-            fmt_crrncs[i] = code + " - " + name;
+            fmt_crrncs[i][0] = element.getFirstChildElement("Code").getValue();
+            fmt_crrncs[i][1] = element.getFirstChildElement("Name").getValue();
         }
 
         return fmt_crrncs;
