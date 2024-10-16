@@ -1,20 +1,32 @@
 package org.scrapers;
 
+import java.util.List;
+
 public class Currency {
     private String code;
     private String name;
-    private String country;
+    private List<String> countries = null;
     private double exchange_rate;
 
     public Currency(
         String code,
         String name,
-        String country,
         double exchange_rate
     ) {
         this.code = code;
         this.name = name;
-        this.country = country;
+        this.exchange_rate = exchange_rate;
+    }
+
+    public Currency(
+        String code,
+        String name,
+        List<String> countries,
+        double exchange_rate
+    ) {
+        this.code = code;
+        this.name = name;
+        this.countries = countries;
         this.exchange_rate = exchange_rate;
     }
 
@@ -26,8 +38,12 @@ public class Currency {
         this.name = name;
     }
 
-    void setCountry(String country) {
-        this.country = country;
+    void addCountry(String country) {
+        this.countries.add(country);
+    }
+
+    void addCountries(List<String> countries) {
+        this.countries.addAll(countries);
     }
 
     void setExchangeRate(double exchange_rate) {
@@ -42,8 +58,8 @@ public class Currency {
         return this.name;
     }
 
-    public String getCountry() {
-        return this.country;
+    public List<String> getCountries() {
+        return this.countries;
     }
 
     public double getExchangeRate() {

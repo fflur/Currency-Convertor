@@ -20,14 +20,12 @@ public class CurrencyConvertorTest {
         Currency curren1 = new Currency(
             "USD",
             "US Dollar",
-            "United States",
             10D
         );
 
         Currency curren2 = new Currency(
             "INR",
             "Indian Rupee",
-            "India",
             1000D
         );
 
