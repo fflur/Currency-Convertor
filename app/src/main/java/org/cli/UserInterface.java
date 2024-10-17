@@ -13,7 +13,9 @@ import com.github.rvesse.airline.annotations.AirlineModule;
     commands = {
         Convert.class,
         ListCurrencies.class,
-        IsValid.class
+        IsValid.class,
+        Scrape.class,
+        GetCurrencyCode.class
     }
 )
 public class UserInterface {
