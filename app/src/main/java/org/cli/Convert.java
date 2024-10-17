@@ -23,12 +23,8 @@ public class Convert implements Runnable {
             "The currency code from which the amount will" +
             " be converted."
     )
-    @MinLength (
-        length = 3
-    )
-    @MaxLength (
-        length = 3
-    )
+    @MinLength ( length = 3 )
+    @MaxLength ( length = 3 )
     @Required
     public String from;
 
@@ -37,12 +33,8 @@ public class Convert implements Runnable {
         arity = 1,
         description = "The target currency code."
     )
-    @MinLength (
-        length = 3
-    )
-    @MaxLength (
-        length = 3
-    )
+    @MinLength ( length = 3 )
+    @MaxLength ( length = 3 )
     @Required
     public String to;
 

@@ -19,12 +19,8 @@ public class IsValid implements Runnable {
         arity = 1,
         description = "Specify currency's code."
     )
-    @MinLength (
-        length = 3
-    )
-    @MaxLength (
-        length = 3
-    )
+    @MinLength ( length = 3 )
+    @MaxLength ( length = 3 )
     @Required
     private String curr_code;
 
