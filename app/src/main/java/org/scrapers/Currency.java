@@ -1,33 +1,24 @@
 package org.scrapers;
 
 import java.util.List;
+import java.util.ArrayList;
+import nu.xom.Element; 
 
 public class Currency {
     private String code;
     private String name;
-    private List<String> countries = null;
-    private double exchange_rate;
+    private int number;
+    private List<String> countries = new ArrayList<String>();
+    private double exchange_rate = 0.0;
 
     public Currency(
         String code,
         String name,
-        double exchange_rate
+        int number
     ) {
         this.code = code;
         this.name = name;
-        this.exchange_rate = exchange_rate;
-    }
-
-    public Currency(
-        String code,
-        String name,
-        List<String> countries,
-        double exchange_rate
-    ) {
-        this.code = code;
-        this.name = name;
-        this.countries = countries;
-        this.exchange_rate = exchange_rate;
+        this.number = number;
     }
 
     void setCode(String code) {
@@ -38,7 +29,7 @@ public class Currency {
         this.name = name;
     }
 
-    void addCountry(String country) {
+    public void addCountry(String country) {
         this.countries.add(country);
     }
 

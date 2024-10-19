@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ISO_4217 Pblshd="2024-06-25">
+<Currencies>
 	<CcyTbl>
 		<CcyNtry>
 			<CtryNm>AFGHANISTAN</CtryNm>
@@ -56,10 +56,6 @@
 			<Ccy>XCD</Ccy>
 			<CcyNbr>951</CcyNbr>
 			<CcyMnrUnts>2</CcyMnrUnts>
-		</CcyNtry>
-		<CcyNtry>
-			<CtryNm>ANTARCTICA</CtryNm>
-			<CcyNm>No universal currency</CcyNm>
 		</CcyNtry>
 		<CcyNtry>
 			<CtryNm>ANTIGUA AND BARBUDA</CtryNm>
@@ -1953,4 +1949,4 @@
 			<CcyMnrUnts>N.A.</CcyMnrUnts>
 		</CcyNtry>
 	</CcyTbl>
-</ISO_4217>
+</Currencies>

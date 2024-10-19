@@ -8,7 +8,7 @@ import com.github.rvesse.airline.annotations.Command;
     description = "Runs the scraper."
 )
 public class Scrape implements Runnable {
-    HelpOption<UserInterface> help;
+    private HelpOption<UserInterface> help;
 
     @Override
     public void run() {

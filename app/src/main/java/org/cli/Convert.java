@@ -26,7 +26,7 @@ public class Convert implements Runnable {
     @MinLength ( length = 3 )
     @MaxLength ( length = 3 )
     @Required
-    public String from;
+    private String from;
 
     @Option (
         name = {"--to", "-t"},
@@ -36,7 +36,7 @@ public class Convert implements Runnable {
     @MinLength ( length = 3 )
     @MaxLength ( length = 3 )
     @Required
-    public String to;
+    private String to;
 
     @Option (
         name = {"--amount", "-a"},
@@ -44,7 +44,7 @@ public class Convert implements Runnable {
         description = "The amount to convert to target currency."
     )
     @Required
-    public double amount;
+    double amount;
 
     @Override
     public void run() {

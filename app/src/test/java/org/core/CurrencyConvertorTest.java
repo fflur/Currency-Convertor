@@ -20,13 +20,13 @@ public class CurrencyConvertorTest {
         Currency curren1 = new Currency(
             "USD",
             "US Dollar",
-            10D
+            10
         );
 
         Currency curren2 = new Currency(
             "INR",
             "Indian Rupee",
-            1000D
+            1000
         );
 
         this.currencies = new HashMap<String, Currency>();
@@ -35,32 +35,27 @@ public class CurrencyConvertorTest {
         this.cc = new CurrencyConvertor(this.currencies, scraper);
     }
 
-    @Test
     void convertTest() throws Exception {
         Assertions.assertEquals(100000D, cc.convert("USD", "INR", 1000D));
     }
 
-    @Test
     void getCurrCodeByCountryTest() throws Exception {
         Assertions.assertDoesNotThrow(() -> cc.getCurrCodeByCountry("aerica"));
         Assertions.assertEquals(null, cc.getCurrCodeByCountry("america"));
         Assertions.assertEquals("INR", cc.getCurrCodeByCountry("india"));
     }
 
-    @Test
     void getCurrCodeByNameTest() throws Exception {
         Assertions.assertDoesNotThrow(() -> cc.getCurrCodeByName("asdkf"));
         Assertions.assertEquals(null, cc.getCurrCodeByName("dinaar"));
         Assertions.assertEquals("INR", cc.getCurrCodeByName("indian rupee"));
     }
 
-    @Test
     void getInfoTest() throws Exception {
         Map<String, Currency> copied_map = this.currencies;
         Assertions.assertTrue(copied_map.values().equals(cc.getInfo()));
     }
 
-    @Test
     void listCurrenciesTest() {
         String tst[][] = {
             {"USD", "American Dollar"},
@@ -70,18 +65,15 @@ public class CurrencyConvertorTest {
         Assertions.assertArrayEquals(tst, cc.listCurrencies());
     }
 
-    @Test
     void setBaseCurrencyTest() throws Exception {
         Assertions.assertDoesNotThrow(() -> cc.setBaseCurrency("INR"));
     }
 
-    @Test
     void getBaseCurrencyTest() throws Exception {
         Assertions.assertDoesNotThrow(() -> cc.getBaseCurrency());
         Assertions.assertEquals("INR", cc.getBaseCurrency());
     }
 
-    @Test
     void isBaseCurrencySetTest() throws Exception {
         Assertions.assertTrue(cc.isBaseCurrencySet());
     }

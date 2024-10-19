@@ -10,7 +10,7 @@ import com.github.rvesse.airline.annotations.restrictions.RequireOnlyOne;
     description = "Fetches currency code from the datafile."
 )
 public class GetCurrencyCode implements Runnable {
-    HelpOption<UserInterface> help;
+    private HelpOption<UserInterface> help;
     
     @Option (
         name = {"--country"},
