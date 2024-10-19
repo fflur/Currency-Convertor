@@ -7,6 +7,10 @@ import com.github.rvesse.airline.annotations.restrictions.Required;
 import com.github.rvesse.airline.annotations.restrictions.MinLength;
 import com.github.rvesse.airline.annotations.restrictions.MaxLength;
 
+import org.core.CurrencyConvertor;
+import org.database.DataManager;
+import java.nio.file.Files;
+
 @Command (
     name = "validate",
     description = "To check for existence of currency code."
@@ -26,6 +30,26 @@ public class IsValid implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Hello! I am validater.");
+        try {
+            DataManager dm = DataManager.getInstance();
+
+            if (!Files.exists(dm.getCurrenciesFile()))
+                System.out.println(
+                    "Error!" +
+                    " Data files not found." +
+                    "Run the scraper first"
+                );
+
+            CurrencyConvertor cc = CurrencyConvertor.load();
+
+            if (cc.isValidCurrency(this.curr_code))
+                System.out.println("Valid");
+            else
+                System.out.println("Invalid");
+        }
+
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

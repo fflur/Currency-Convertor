@@ -56,7 +56,7 @@ public class Convert implements Runnable {
             DataManager mgr = DataManager.getInstance();
 
             if (!Files.exists(mgr.getCurrenciesFile())) {
-                System.out.println("Data doesn't exists! Run the scraper.");
+                System.out.println("Error! Data files not found. Run the scraper first.");
                 return;
             }
 

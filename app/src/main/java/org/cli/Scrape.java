@@ -63,15 +63,4 @@ public class Scrape implements Runnable {
             System.out.println(e.getMessage());
         }
     }
-
-    // public void test() throws
-    //     MalformedURLException,
-    //     HttpStatusException,
-    //     UnsupportedMimeTypeException,
-    //     SocketTimeoutException,
-    //     IOException
-    // {
-    //     DefaultScraper scraper = new DefaultScraper();
-    //     System.out.println("Scraper instance created. Yay!");
-    // }
 }

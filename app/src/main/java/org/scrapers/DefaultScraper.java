@@ -73,6 +73,15 @@ public final class DefaultScraper implements IScraper {
                 )
             );
         }
+
+        this.curr_data.put(
+            "KWD",
+            new Currency(
+                "KWD",
+                "Kuwaiti Dinaar",
+                1D
+            )
+        );
     }
 
     @Override

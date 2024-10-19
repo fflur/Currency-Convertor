@@ -43,7 +43,10 @@ public final class CurrencyConvertor implements Serializable {
         }
     }
 
-    public static CurrencyConvertor load() throws IOException, ClassNotFoundException {
+    public static synchronized CurrencyConvertor load() throws
+        IOException,
+        ClassNotFoundException
+    {
         DataManager dm = DataManager.getInstance();
         ObjectInputStream ois = new ObjectInputStream(
             Files.newInputStream(dm.getCurrenciesFile())
