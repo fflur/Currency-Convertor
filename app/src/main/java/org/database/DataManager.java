@@ -39,7 +39,9 @@ public final class DataManager {
                     "ccvertor",
                     "currencies.xml"
                 );
-        } else if (
+        }
+
+        else if (
             this.sys_os.contains("windows") ||
             this.sys_os.contains("Windows")
         ) {
@@ -75,6 +77,7 @@ public final class DataManager {
     public static DataManager getInstance() {
         DataManager tmp = data_mgr;
         if (tmp != null) return tmp;
+
         synchronized(DataManager.class) {
             if (data_mgr == null) data_mgr = new DataManager();
             return data_mgr;
@@ -93,7 +96,15 @@ public final class DataManager {
         if (!Files.exists(this.config_file))
             this.config_file = Files.createFile(this.config_file);
 
-        if (!Files.exists(this.config_file))
-            this.config_file = Files.createFile(this.config_file);
+        if (!Files.exists(this.crrncs_file))
+            this.crrncs_file = Files.createFile(this.crrncs_file);
+    }
+
+    public Path getConfigFile() {
+        return this.config_file;
+    }
+
+    public Path getCurrenciesFile() {
+        return this.crrncs_file;
     }
 }
