@@ -10,8 +10,10 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.2") //JUnit 5
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.2") //JUnit 5
     testImplementation("org.mockito:mockito-core:5.14.1") //Mockito
+
     implementation("xom:xom:1.3.9") //XOM
     implementation("com.github.rvesse:airline:3.0.0") //Airline
+    implementation("org.jsoup:jsoup:1.18.1") //JSoup
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
