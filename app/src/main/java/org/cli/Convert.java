@@ -8,7 +8,9 @@ import com.github.rvesse.airline.annotations.restrictions.MinLength;
 import com.github.rvesse.airline.annotations.restrictions.MaxLength;
 
 import java.nio.file.Files;
+import java.io.IOException;
 import org.core.CurrencyConvertor;
+import org.core.UnknownCurrencyException;
 import org.database.DataManager;
 
 @Command (
@@ -56,7 +58,11 @@ public class Convert implements Runnable {
             DataManager mgr = DataManager.getInstance();
 
             if (!Files.exists(mgr.getCurrenciesFile())) {
-                System.out.println("Error! Data files not found. Run the scraper first.");
+                System.out.println(
+                    "Error! " +
+                    "Data files not found. " +
+                    "Run the scraper first."
+                );
                 return;
             }
 
@@ -71,8 +77,24 @@ public class Convert implements Runnable {
             );
         }
 
-        catch (Exception e) {
-            System.out.println(e.getMessage());
+        catch(UnknownCurrencyException e) {
+            System.out.println(
+                "Error! " +
+                "Illegal currency code or unrecognized code. " +
+                "Run \"list-currencies\" to see list of " +
+                "currency codes recognized by this program."
+            );
+        }
+        catch (ClassNotFoundException e) {
+            System.out.println(
+                "Error! " +
+                "Data not found. " +
+                "Issue \"scraper\" command."
+            );
+        }
+
+        catch (IOException e) {
+            System.out.println("Error! Failed or interrupted IO operation.");
         }
     }
 }

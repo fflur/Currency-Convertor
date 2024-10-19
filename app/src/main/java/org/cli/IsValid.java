@@ -10,6 +10,7 @@ import com.github.rvesse.airline.annotations.restrictions.MaxLength;
 import org.core.CurrencyConvertor;
 import org.database.DataManager;
 import java.nio.file.Files;
+import java.io.IOException;
 
 @Command (
     name = "validate",
@@ -35,8 +36,8 @@ public class IsValid implements Runnable {
 
             if (!Files.exists(dm.getCurrenciesFile()))
                 System.out.println(
-                    "Error!" +
-                    " Data files not found." +
+                    "Error! " +
+                    "Data files not found. " +
                     "Run the scraper first"
                 );
 
@@ -48,8 +49,20 @@ public class IsValid implements Runnable {
                 System.out.println("Invalid");
         }
 
-        catch (Exception e) {
-            System.out.println(e.getMessage());
+        catch (SecurityException e) {
+            System.out.println("Fatal Error! Security violation.");
+        }
+
+        catch (IOException e) {
+            System.out.println("Error! Failed or interrupted IO operation.");
+        }
+
+        catch (ClassNotFoundException e) {
+            System.out.println(
+                "Error! " +
+                "Data not found. " +
+                "Issue \"scraper\" command."
+            );
         }
     }
 }

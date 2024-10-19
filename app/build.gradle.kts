@@ -1,5 +1,6 @@
 plugins {
     application
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 repositories {
@@ -11,7 +12,6 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.2") //JUnit 5
     testImplementation("org.mockito:mockito-core:5.14.1") //Mockito
 
-    implementation("xom:xom:1.3.9") //XOM
     implementation("com.github.rvesse:airline:3.0.0") //Airline
     implementation("org.jsoup:jsoup:1.18.1") //JSoup
 }

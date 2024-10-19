@@ -22,6 +22,8 @@ import com.github.rvesse.airline.parser.errors.ParseTooManyArgumentsException;
         ListCurrencies.class,
         IsValid.class,
         Scrape.class,
+        Version.class,
+        Help.class
     }
 )
 public class UserInterface {
