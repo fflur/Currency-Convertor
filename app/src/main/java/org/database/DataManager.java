@@ -13,8 +13,6 @@ public final class DataManager {
     private Path ccvertor_dir;
     private Path config_file;
     private Path crrncs_file;
-    private Document configs;
-    private Document crrncs;
 
     private DataManager() {
         this.home_dir = System.getProperty("user.home");
@@ -29,14 +27,14 @@ public final class DataManager {
                 .getPath(this.home_dir, ".local", "ccvertor");
             this.config_file = FileSystems
                 .getDefault()
-                .getPath(this.home_dir, ".local", "ccvertor", "config.xml");
+                .getPath(this.home_dir, ".local", "ccvertor", "Configurations");
             this.crrncs_file = FileSystems
                 .getDefault()
                 .getPath(
                     this.home_dir,
                     ".local",
                     "ccvertor",
-                    "currencies.xml"
+                    "CurrencyConvertor"
                 );
         }
 
@@ -59,7 +57,7 @@ public final class DataManager {
                     "AppData",
                     "Local",
                     "ccvertor",
-                    "config.xml"
+                    "Configurations"
                 );
             this.crrncs_file = FileSystems
                 .getDefault()
@@ -68,7 +66,7 @@ public final class DataManager {
                     "AppData",
                     "Local",
                     "ccvertor",
-                    "currencies.xml"
+                    "CurrencyConvertor"
                 );
         }
     }

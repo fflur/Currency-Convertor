@@ -1,4 +1,4 @@
-package org.scraper;
+package org.scrapers;
 
 import org.scrapers.IScraper;
 import org.scrapers.Currency;
@@ -60,11 +60,10 @@ public final class DefaultScraper implements IScraper {
 
         for (Element ele : this.list_of_currs) {
             curr_name = ele.child(0);
-            xcge_rate = ele.child(1);
+            xcge_rate = ele.child(1).firstElementChild();
             tmp_link = xcge_rate
-                .attribute("href")
-                .getValue();
-            code = tmp_link.substring(tmp_link.length() - 4);
+                .attr("href");
+            code = tmp_link.substring(tmp_link.length() - 3);
             this.curr_data.put(
                 code,
                 new Currency(

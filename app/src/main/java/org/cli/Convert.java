@@ -7,6 +7,10 @@ import com.github.rvesse.airline.annotations.restrictions.Required;
 import com.github.rvesse.airline.annotations.restrictions.MinLength;
 import com.github.rvesse.airline.annotations.restrictions.MaxLength;
 
+import java.nio.file.Files;
+import org.core.CurrencyConvertor;
+import org.database.DataManager;
+
 @Command (
     name = "convert",
     description =
@@ -48,6 +52,27 @@ public class Convert implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Hello, World!");
+        try {
+            DataManager mgr = DataManager.getInstance();
+
+            if (!Files.exists(mgr.getCurrenciesFile())) {
+                System.out.println("Data doesn't exists! Run the scraper.");
+                return;
+            }
+
+            CurrencyConvertor cc = CurrencyConvertor.load();
+            double result = cc.convert(this.from, this.to, this.amount);
+            System.out.printf(
+                "%.2f %s = %.2f %s\n",
+                this.amount,
+                this.from,
+                result,
+                this.to
+            );
+        }
+
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
