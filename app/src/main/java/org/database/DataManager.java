@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.FileSystems;
 import java.nio.file.FileAlreadyExistsException;
-import nu.xom.Document;
 
 public final class DataManager {
     private static volatile DataManager data_mgr;

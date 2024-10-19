@@ -3,7 +3,6 @@ package org.scrapers;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;
-import nu.xom.Element; 
 
 public class Currency implements Serializable {
     private final String code;
