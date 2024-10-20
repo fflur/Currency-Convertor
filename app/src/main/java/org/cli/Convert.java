@@ -4,8 +4,7 @@ import com.github.rvesse.airline.HelpOption;
 import com.github.rvesse.airline.annotations.Option;
 import com.github.rvesse.airline.annotations.Command;
 import com.github.rvesse.airline.annotations.restrictions.Required;
-import com.github.rvesse.airline.annotations.restrictions.MinLength;
-import com.github.rvesse.airline.annotations.restrictions.MaxLength;
+import com.github.rvesse.airline.annotations.restrictions.ExactLength;
 
 import java.nio.file.Files;
 import java.io.IOException;
@@ -29,8 +28,7 @@ public class Convert implements Runnable {
             "The currency code from which the amount will" +
             " be converted."
     )
-    @MinLength ( length = 3 )
-    @MaxLength ( length = 3 )
+    @ExactLength ( length = 3 )
     @Required
     private String from;
 
@@ -39,8 +37,7 @@ public class Convert implements Runnable {
         arity = 1,
         description = "The target currency code."
     )
-    @MinLength ( length = 3 )
-    @MaxLength ( length = 3 )
+    @ExactLength ( length = 3 )
     @Required
     private String to;
 
@@ -50,11 +47,12 @@ public class Convert implements Runnable {
         description = "The amount to convert to target currency."
     )
     @Required
-    double amount;
+    private String amt;
 
     @Override
     public void run() {
         try {
+            double amount = Double.parseDouble(this.amt);
             DataManager mgr = DataManager.getInstance();
 
             if (!Files.exists(mgr.getCurrenciesFile())) {
@@ -67,14 +65,18 @@ public class Convert implements Runnable {
             }
 
             CurrencyConvertor cc = CurrencyConvertor.load();
-            double result = cc.convert(this.from, this.to, this.amount);
+            double result = cc.convert(this.from, this.to, amount);
             System.out.printf(
                 "%.2f %s = %.2f %s\n",
-                this.amount,
+                amount,
                 this.from,
                 result,
                 this.to
             );
+        }
+
+        catch (NumberFormatException e) {
+            System.out.println("Error! Invalid amount.");
         }
 
         catch(UnknownCurrencyException e) {

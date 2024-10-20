@@ -17,6 +17,6 @@ public class Version implements Runnable {
             "Running on : " +
             System.getProperty("os.name")
         );
-        System.out.println("Author : Broly - The Saiyajin");
+        System.out.println("Author : Muhammad Shakeel Ansari");
     }
 }
