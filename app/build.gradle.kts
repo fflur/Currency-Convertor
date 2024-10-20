@@ -1,3 +1,5 @@
+version = "1.0.1"
+
 plugins {
     application
     id("com.github.johnrengelman.shadow") version "8.1.1"
@@ -27,6 +29,7 @@ java {
 
 application {
     mainClass = "org.cli.UserInterface"
+    setApplicationName("ccvertor")
 }
 
 tasks.named<Test>("test") {

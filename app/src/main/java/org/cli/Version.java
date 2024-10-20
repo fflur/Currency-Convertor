@@ -12,7 +12,7 @@ public class Version implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Version : 1.0.0");
+        System.out.println("Version : 1.0.1");
         System.out.println(
             "Running on : " +
             System.getProperty("os.name")
